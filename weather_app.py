@@ -48,7 +48,7 @@ st.markdown('<div class="subtitle">輸入你所在的城市，一起看今天的
 
 # ---------- 城市輸入 ----------
 API_KEY = "68a25f3ccff109a6bd1221889e65ea44"
-city = st.text_input("🏙️ 請輸入城市名稱（例如：台北、東京、Seoul）")
+city = st.text_input("🏙️ 請輸入城市名稱（例如：台北、東京、首爾）")
 
 # ---------- 天氣查詢 ----------
 if city:
