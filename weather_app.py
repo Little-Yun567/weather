@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import requests
 import datetime
@@ -25,6 +26,7 @@ st.markdown("""
     .stTextInput>div>div>input {
         border-radius: 1rem;
         border: 2px solid #ffcab4;
+        padding: 0.5em;
     }
     .stButton button {
         border-radius: 1.5rem;
@@ -40,13 +42,15 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# ---------- App 內容 ----------
+# ---------- App 標題 ----------
 st.markdown('<div class="title">☀️ 可愛天氣小助手 1.0</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">輸入城市，馬上知道天氣如何～</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">輸入你所在的城市，一起看今天的天氣吧～</div>', unsafe_allow_html=True)
 
+# ---------- 城市輸入 ----------
 API_KEY = "68a25f3ccff109a6bd1221889e65ea44"
-city = st.text_input("輸入城市名稱（如 Taipei）")
+city = st.text_input("🏙️ 請輸入城市名稱（例如：台北、東京、Seoul）")
 
+# ---------- 天氣查詢 ----------
 if city:
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&lang=zh_tw&units=metric"
     response = requests.get(url)
@@ -60,7 +64,7 @@ if city:
         icon_code = data["weather"][0]["icon"]
 
         # 顯示天氣資訊
-        st.success(f"{city} 的天氣：{weather}")
+        st.success(f"📍 {city} 現在的天氣是：{weather}")
         st.metric("🌡️ 溫度", f"{temp}°C")
         st.metric("💧 濕度", f"{humidity}%")
         st.metric("🍃 風速", f"{wind_speed} m/s")
@@ -71,9 +75,10 @@ if city:
 
         # 顯示當下時間
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-        st.caption(f"最後更新時間：{now}")
+        st.caption(f"🕒 最後更新時間：{now}")
     else:
-        st.error("找不到城市，請檢查名稱是否正確！")
+        st.error("⚠️ 找不到這個城市喔，請再檢查一下輸入的名稱是不是有錯字～")
 
-# 小 Yun 陪你報天氣（可以替換成你的角色圖）
-st.image("https://i.imgur.com/hJmrZ5D.png", caption="by 小Yun", width=180)
+# ---------- 可愛角色結尾 ----------
+st.markdown("---")
+st.image("https://i.imgur.com/hJmrZ5D.png", caption="by 小Yun 陪你看天氣 ☁️", width=180)
