@@ -48,20 +48,7 @@ st.markdown('<div class="subtitle">輸入你所在的城市，一起看今天的
 
 # ---------- 城市輸入 ----------
 API_KEY = "68a25f3ccff109a6bd1221889e65ea44"
-from googletrans import Translator
-translator = Translator()
-
-# 使用者輸入中文城市
-user_city = st.text_input("輸入城市名稱（可用中文）")
-
-# 自動翻譯為英文城市名
-if user_city:
-    try:
-        translated_city = translator.translate(user_city, dest="en").text
-        st.write(f"🔎 查詢城市：{translated_city}")
-        # 接著用 translated_city 呼叫 OpenWeatherMap API
-    except:
-        st.error("無法翻譯城市名稱，請再試一次")
+city = st.text_input("🏙️ 請輸入城市名稱（例如：台北、東京、首爾）")
 
 # ---------- 天氣查詢 ----------
 if city:
