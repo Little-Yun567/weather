@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import requests
 import datetime
@@ -89,3 +90,7 @@ if user_city:
     except Exception as e:
         st.error("❌ 無法翻譯城市名稱，請稍後再試一次。")
         st.caption(f"錯誤訊息：{e}")
+
+# ---------- 可愛角色結尾 ----------
+st.markdown("---")
+st.image("https://i.imgur.com/hJmrZ5D.png", caption="by 小Yun 陪你看天氣 ☁️", width=180)
